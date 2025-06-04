@@ -11,6 +11,15 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
+.user-card-container{
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
 .card {
   background-color: #1f4b2c;
   border-radius: 20px;
