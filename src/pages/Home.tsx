@@ -1,7 +1,6 @@
 import { UserCard } from "../components/UserCard";
 import { RiUserSearchFill } from "react-icons/ri";
-import { MdNavigateNext } from "react-icons/md";
-import { MdNavigateBefore } from "react-icons/md";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import "../utils/Home.css";
 
 export const Home = () => {
