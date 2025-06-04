@@ -5,7 +5,7 @@ import "../utils/Home.css";
 
 export const Home = () => {
     return(
-        <div>
+        <div className="homePage">
             {/* Header with searchbar & navigation controls */}
             <header className="headerBar">
                 <div className="search">

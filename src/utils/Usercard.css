@@ -16,7 +16,7 @@
   border-radius: 20px;
   padding: 20px;
   margin: 15px;
-  width: 320px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -100,12 +100,12 @@
   padding: 8px 16px;
   margin-top: 15px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .card > button:hover {
   background-color: var(--cardBtnBorder);
   border: #4E9F3D solid 2px;
   color: var(--cardBackground);
-  transition: 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }

@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    --textColor: whitesmoke;
+    --cardBackground: #1E5128;
+    --cardBtnBackground: #4E9F3D;
+    --cardBtnBorder: #D8E9A8;
+    color: var(--textColor);
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Repository card */
+.repo-card{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--cardBtnBorder);
+    border-radius: 8px;
+    box-shadow: 0 15px 20px #191A19;
+    padding: 16px;
+    margin: 16px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.repo-card button {
+    align-self: flex-end;
+    background-color: var(--cardBtnBackground);
+    border: 2px solid var(--cardBtnBorder);
+    border-radius: 12px;
+    padding: 8px 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
+}
+
+.repo-card button:hover {
+    background-color: var(--cardBtnBorder);
+    border: #4E9F3D solid 2px;
+    color: var(--cardBackground);
+    transition: all 0.3s ease-out;
+}

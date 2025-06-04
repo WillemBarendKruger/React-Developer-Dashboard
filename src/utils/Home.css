@@ -3,6 +3,11 @@
     padding: 0;
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
+    --textColor: whitesmoke;
+    --cardBackground: #1E5128;
+    --cardBtnBackground: #4E9F3D;
+    --cardBtnBorder: #D8E9A8;
+        color: var(--textColor);
 }
 header{
     background-color: #1E5128;
@@ -14,11 +19,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    color: whitesmoke;
-    --textColor: whitesmoke;
-    --cardBackground: #1E5128;
-    --cardBtnBackground: #4E9F3D;
-    --cardBtnBorder: #D8E9A8;
+;
 }
 
 /* search */
