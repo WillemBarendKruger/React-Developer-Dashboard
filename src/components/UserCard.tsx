@@ -19,11 +19,7 @@ type UserDetails = {
     bio: string | null;
 };
 
-type UserCardProps = {
-    user: UserSummary;
-};
-
-export const UserCard = ({ user }: UserCardProps) => {
+export const UserCard = () => {
     const [apiData, setApiData] = useState<UserSummary[] | null>(null);
     const [userData, setUserData] = useState<UserDetails[] | null>(null);
 
