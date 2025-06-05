@@ -2,3 +2,9 @@ html{
   background-color: #191A19;
   height: 100vh;
 }
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
