@@ -17,10 +17,12 @@
     flex-direction: column;
     border: 2px solid var(--cardBtnBorder);
     border-radius: 8px;
+    background-color: var(--cardBackground);
     box-shadow: 0 15px 20px #191A19;
     padding: 16px;
     margin: 16px;
     transition: transform 0.2s ease-in-out;
+    width: 500px;
 }
 
 .repo-card button {

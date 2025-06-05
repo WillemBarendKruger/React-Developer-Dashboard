@@ -9,7 +9,7 @@ import { UserProfile } from './pages/UserProfile';
 const router = createBrowserRouter([
   {path: "/", element: <Home />},
   {path: "/favorites", element: <Favorite />},
-  {path: "/UserProfile", element: <UserProfile />},
+  {path: "/UserProfile/:username", element: <UserProfile />},
   // {path: "*", element: <PageNotFound />}
 ]);
 
