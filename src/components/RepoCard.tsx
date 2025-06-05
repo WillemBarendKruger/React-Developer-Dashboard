@@ -1,37 +1,26 @@
-import "../utils/RepoCard.css"
-import axios from "axios";
-import { useEffect, useState } from "react";
+import "../utils/RepoCard.css";
+import { useState } from "react";
+import { RepoController } from "../hooks/RepoController";
 
-export const RepoCard = ({user}: any) => {
-    const [repos, setRepos] = useState<object[] | null>(null)
+type Repo = {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+};
 
-    const token: string = import.meta.env.VITE_TOKEN || "";
-    const axiosConfig = {
-        headers: {
-            Authorization: `token ${token}`,
-        },
-    };
+export const RepoCard = ({ user }: any) => {
+  const [repos, setRepos] = useState<Repo[] | null>(null);
 
-    useEffect(() => {
-        if (user) {
-            console.log(user)
-            axios.get(`https://api.github.com/users/${user.login}/repos`, axiosConfig)
-                .then(res => setRepos(res.data));
-        }
-    }, []);
+  RepoController(user, setRepos);
 
-    return(
-
-        repos?.map(( repo: any) => {
-            return(
-                 <div className="repo-card" key={repo.id}>
-                    <h2>{repo.name}</h2>
-                    <p>{repo.description ? repo.description : "Repo has no description"}</p>
-                    <a href={repo.html_url}>View More</a>
-                </div>
-            )
-        })
-
-       
-    )
-}
+  return repos?.map((repo: Repo) => {
+    return (
+      <div className="repo-card" key={repo.id}>
+        <h2>{repo.name}</h2>
+        <p>{repo.description ?? "Repo has no description"}</p>
+        <a href={repo.html_url}>View More</a>
+      </div>
+    );
+  });
+};
