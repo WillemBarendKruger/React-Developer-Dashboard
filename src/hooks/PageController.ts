@@ -17,7 +17,7 @@ type UserDetails = {
     bio: string | null;
 };
 
-const token: string = import.meta.env.VITE_TOKEN || "";
+const token: string = import.meta.env.VITE_TOKEN ?? "";
 const axiosConfig = {
     headers: {
         Authorization: `token ${token}`,
