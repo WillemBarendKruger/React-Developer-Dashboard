@@ -5,6 +5,7 @@ import "../utils/Home.css";
 import { useState } from "react";
 import { PageIndicator } from "../components/PageIndicator";
 import { CiHeart } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   const [searchDev, setSearchDev] = useState("");
@@ -30,7 +31,9 @@ export const Home = () => {
             <RiUserSearchFill />
           </button>
         </div>
-        <div className="favoritesPage"><a href="/favorites"><CiHeart /></a></div>
+        <div className="favoritesPage">
+          <Link to="/favorites"><CiHeart /></Link>
+        </div>
         <nav className="navBtns">
           <PageIndicator
             currentPage={currentPage}
