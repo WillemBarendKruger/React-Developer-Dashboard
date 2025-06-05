@@ -40,6 +40,21 @@ export const UserCard = ({
 
   CountPage(apiData, currentPage, setTotalPages, setUserData);
 
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    const stored = localStorage.getItem("favorites");
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  const addFavoriteUsers = (user: UserDetails) => {
+    let updatedFavorites;
+    if (favorites.includes(user.login)) {
+      updatedFavorites = favorites.filter((fav) => fav !== user.login);
+    } else {
+      updatedFavorites = [...favorites, user.login];
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
   if (!userData)
     return (
       <div className="loader">
@@ -63,7 +78,13 @@ export const UserCard = ({
               </span>
             </div>
             <div className="favoriteBtn">
-              <button type="button" className="favoriteUser">
+              <button
+                type="button"
+                className={`favoriteUser${
+                  favorites.includes(user.login) ? " active" : ""
+                }`}
+                onClick={() => addFavoriteUsers(user)}
+              >
                 <CiHeart />
               </button>
             </div>
