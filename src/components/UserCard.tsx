@@ -3,6 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { RingLoader } from "react-spinners";
 
 type UserSummary = {
     login: string;
@@ -20,7 +21,11 @@ type UserDetails = {
     bio: string | null;
 };
 
-export const UserCard = () => {
+type UserCardProps = {
+    search: string;
+}
+
+export const UserCard = ({ search }: UserCardProps) => {
     const [apiData, setApiData] = useState<UserSummary[] | null>(null);
     const [userData, setUserData] = useState<UserDetails[] | null>(null);
 
@@ -31,25 +36,32 @@ export const UserCard = () => {
         },
     };
 
-useEffect(() => {
-    axios.get("https://api.github.com/users", axiosConfig).then((response) => {
-        setApiData(response.data);
-        console.log("Requesting API data...");
-    });
-}, []);
+    useEffect(() => {
+        if (search && search.trim() !== "") {
+            axios.get(`https://api.github.com/search/users?q=${search}`, axiosConfig)
+            .then((response) => {
+                setApiData(response.data.items);
+            });
+        } else {
+            axios.get("https://api.github.com/users", axiosConfig).then((response) => {
+                setApiData(response.data);
+            });
+        }
+    }, [search]);
 
-useEffect(() => {
-    if (apiData) {
-        console.log("API data received:");
-        Promise.all(
-            apiData.map((user) =>
-                axios.get(`https://api.github.com/users/${user.login}`, axiosConfig).then((res) => res.data)
-            )
-        ).then((users) => setUserData(users));
-    }
-}, [apiData]);
+    useEffect(() => {
+        if (apiData) {
+            Promise.all(
+                apiData.map((user) =>
+                    axios
+                        .get(`https://api.github.com/users/${user.login}`, axiosConfig)
+                        .then((res) => res.data)
+                )
+            ).then((users) => setUserData(users));
+        }
+    }, [apiData]);
 
-    if (!userData) return <div>Loading...</div>;
+    if (!userData) return <div className="loader"><RingLoader  color="#D8E9A8"/></div>;
 
     return (
         <div className="user-card-container">

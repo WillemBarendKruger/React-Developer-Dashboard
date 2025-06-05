@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { RepoCard } from "../components/RepoCard";
+import { RingLoader } from "react-spinners";
 
 type UserDetails = {
     id: number;
@@ -27,8 +28,7 @@ export const UserProfile = () => {
         }
     }, [username]);
 
-    if (!user) return <div>Loading...</div>;
-
+    if (!user) return <div><RingLoader color="#D8E9A8" /></div>;
    
     return(
         <div className="user-profile">
