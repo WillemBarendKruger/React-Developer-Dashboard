@@ -11,11 +11,6 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* .user-profile{
-    background-color: var(--cardBackground);
-    height: 100vh;
-} */
-
 .user-profile-header{
     display: flex;
     align-items: center;

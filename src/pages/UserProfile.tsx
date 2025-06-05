@@ -42,8 +42,6 @@ export const UserProfile = () => {
             </header>
             <p className="personalBio">{user.bio}</p>
             <div className="user-repo-container">
-                
-                {/*ToDo: Render RepoCard(s) here */}
                 <RepoCard  user={user} />
             </div>
         </div>

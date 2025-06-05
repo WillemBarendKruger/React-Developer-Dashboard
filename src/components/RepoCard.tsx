@@ -2,13 +2,6 @@ import "../utils/RepoCard.css"
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-type  RepoDetails = {
-    id: number;
-    name: string;
-    description: string | null;
-    html_url: string;
-}
-
 export const RepoCard = ({user}: any) => {
     const [repos, setRepos] = useState<object[] | null>(null)
 
