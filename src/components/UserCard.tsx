@@ -22,7 +22,7 @@ type UserDetails = {
 };
 
 type UserCardProps = {
-    search: string;
+    search?: string;
 }
 
 export const UserCard = ({ search }: UserCardProps) => {
