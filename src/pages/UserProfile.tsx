@@ -1,26 +1,48 @@
 import "../utils/UserProfile.css";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { RepoCard } from "../components/RepoCard";
 
+type UserDetails = {
+    id: number;
+    login: string;
+    name: string | null;
+    location: string | null;
+    avatar_url: string;
+    followers: number;
+    following: number;
+    bio: string | null;
+};
+
 export const UserProfile = () => {
+    const { username } = useParams();
+    const [user, setUser] = useState<UserDetails | null>(null);
+
+    useEffect(() => {
+        if (username) {
+            console.log(username)
+            axios.get(`https://api.github.com/users/${username}`)
+                .then(res => setUser(res.data));
+        }
+    }, [username]);
+
+    if (!user) return <div>Loading...</div>;
 
    
     return(
         <div className="user-profile">
             <header className="user-profile-header">
-                <img src="" alt="avatar" />
+                <img src={user.avatar_url} alt="avatar" />
                 <div>
-                    <h1>Username</h1>
-                    <h3>Name</h3>
+                    <h1>{user.login}</h1>
+                    <h3>{user.name}</h3>
                 </div>
-               <a href="#">X</a>
+                <a href="/" type="button">X</a>
             </header>
-             <div>
-                <p className="personalBio">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam optio inventore eum, illum, harum molestias nihil quasi in atque animi rerum laudantium ducimus accusantium ut esse mollitia culpa commodi obcaecati eius soluta consectetur neque molestiae consequuntur totam. Perspiciatis iure necessitatibus perferendis rem nemo laboriosam cupiditate consectetur dicta similique unde? Nesciunt!</p>
-                <div>
-                    <RepoCard />
-                    <RepoCard />
-                </div>
-
+            <p className="personalBio">{user.bio}</p>
+            <div className="user-repo-container">
+                <RepoCard  user={user} />
             </div>
         </div>
     )

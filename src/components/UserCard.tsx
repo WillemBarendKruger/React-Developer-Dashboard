@@ -2,6 +2,7 @@ import "../utils/Usercard.css";
 import { CiHeart } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 type UserSummary = {
     login: string;
@@ -23,23 +24,30 @@ export const UserCard = () => {
     const [apiData, setApiData] = useState<UserSummary[] | null>(null);
     const [userData, setUserData] = useState<UserDetails[] | null>(null);
 
-    useEffect(() => {
-        axios.get("https://api.github.com/users").then((response) => {
-            setApiData(response.data);
-            console.log("Requesting API data...");
-        });
-    }, []);
+    const token: string = import.meta.env.VITE_TOKEN || "";
+    const axiosConfig = {
+        headers: {
+            Authorization: `token ${token}`,
+        },
+    };
 
-    useEffect(() => {
-        if (apiData) {
-            console.log("API data received:");
-            Promise.all(
-                apiData.map((user) =>
-                    axios.get(`https://api.github.com/users/${user.login}`).then((res) => res.data)
-                )
-            ).then((users) => setUserData(users));
-        }
-    }, [apiData]);
+useEffect(() => {
+    axios.get("https://api.github.com/users", axiosConfig).then((response) => {
+        setApiData(response.data);
+        console.log("Requesting API data...");
+    });
+}, []);
+
+useEffect(() => {
+    if (apiData) {
+        console.log("API data received:");
+        Promise.all(
+            apiData.map((user) =>
+                axios.get(`https://api.github.com/users/${user.login}`, axiosConfig).then((res) => res.data)
+            )
+        ).then((users) => setUserData(users));
+    }
+}, [apiData]);
 
     if (!userData) return <div>Loading...</div>;
 
@@ -65,7 +73,9 @@ export const UserCard = () => {
                         </div>
                     </div>
                     <p className="bio">{user.bio ?? "No Bio Available"}</p>
-                    <button>View More</button>
+                    <button>
+                        <Link to={`/UserProfile/${user.login}`}>View More</Link>
+                    </button>
                 </div>
             ))}
         </div>
