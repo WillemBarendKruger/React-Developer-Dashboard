@@ -4,6 +4,7 @@ import { useDebounce } from "use-debounce";
 import "../utils/Home.css";
 import { useState } from "react";
 import { PageIndicator } from "../components/PageIndicator";
+import { CiHeart } from "react-icons/ci";
 
 export const Home = () => {
   const [searchDev, setSearchDev] = useState("");
@@ -29,6 +30,7 @@ export const Home = () => {
             <RiUserSearchFill />
           </button>
         </div>
+        <div className="favoritesPage"><a href="/favorites"><CiHeart /></a></div>
         <nav className="navBtns">
           <PageIndicator
             currentPage={currentPage}

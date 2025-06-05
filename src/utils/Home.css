@@ -41,6 +41,14 @@ header{
     padding: 8px;
 }
 
+/* Favorite Btn */
+.favoritesPage{
+    scale: 2;
+}
+.favoritesPage a:hover{
+    scale: 2.5;
+}
+
 /* Navigation */
 .navBtns{
     display: flex;
